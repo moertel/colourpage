@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM fabiocicerchia/nginx-lua:1.19-alpine
 LABEL maintainer="hi@moer.tel"
 
 ARG BUILD_DATE
@@ -10,5 +10,10 @@ LABEL org.label-schema.description="Displays a static HTML page in a single colo
 
 COPY index.html /tmp/index.html
 COPY 00-apply-color.sh /docker-entrypoint.d/
+COPY 01-apply-metrics.sh /docker-entrypoint.d/
+COPY metrics.sh /tmp/metrics.sh
+COPY metrics.conf /etc/nginx/conf.d/default.conf
+
+RUN mkdir -p /usr/share/nginx/html
 
 ENV COLOUR blue
