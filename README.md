@@ -18,10 +18,12 @@ docker run \
   -e COLOUR=blue \
   -e METRIC=2.4 \
   -e NEWRELIC_LICENSE_KEY=abc123 \
+  -e CUSTOM_ATTRIBUTE_ENV_VARIABLE_NAME="DEPLOYMENT_VERSION" \
+  -e DEPLOYMENT_VERSION=def456 \
   -p 8080:80 \
   -it moertel/colour
 ```
 Calling `curl -X GET http://localhost:8080/ping` will then send the static metric value 2.5 to NewRelic. It can be queried like this:
 ```
-SELECT dummy FROM Metric WHERE colour='blue'
+SELECT dummy FROM Metric WHERE colour='blue' AND DEPLOYMENT_VERSION='def456'
 ```

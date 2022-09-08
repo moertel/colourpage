@@ -9,6 +9,6 @@ curl -k -H "Content-Type: application/json" \
        "type":"gauge",
        "value":###METRIC###,
        "timestamp":'$(date +%s)',
-       "attributes":{"colour":"###COLOUR###"}
+       "attributes":{"colour":"###COLOUR###"###CUSTOM_ATTRIBUTES###}
        }]
 }]'
